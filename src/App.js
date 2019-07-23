@@ -4,6 +4,7 @@ import './App.css';
 
 //import Createable from 'react-select/createable';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -31,15 +32,16 @@ class App extends React.Component {
   // otherwise, output the chosen exercise
   handleSubmit(event) {
     let currentValue = this.state.value;
-    if(currentValue in this.state.exerciseList){
+    if(this.state.exerciseList.includes(currentValue)){
       this.setState({
-        output: this.state.value,
-        exerciseList: this.state.exerciseList.concat(this.state.value)
+        output: this.state.value
+
       });
     }
     else{
       this.setState({
         output: this.state.value,
+        exerciseList: this.state.exerciseList.concat(this.state.value)
       });
     }
       
@@ -50,8 +52,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
         <form onSubmit={this.handleSubmit}>
-        {/* <form> */}
           <label>
             Exercises: 
             <input type="text" value={this.state.value} list="exerciseList" onChange={this.handleChange} />
